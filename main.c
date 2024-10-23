@@ -6,19 +6,14 @@
 /*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 15:23:56 by vgodoy            #+#    #+#             */
-/*   Updated: 2024/10/23 12:32:29 by vgodoy           ###   ########.fr       */
+/*   Updated: 2024/10/23 15:35:53 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	show_deck(t_card *first_card)
+void	show_deck(t_card *card)
 {
-	t_card	*card;
-	int		nbr;
-
-	card = first_card;
-	write(1,".........\n",10);
 	while (card != NULL)
 	{
 		printf("%d\n",card->nbr);
@@ -26,35 +21,40 @@ void	show_deck(t_card *first_card)
 	}
 }
 
-void	show_args(int argc, char **argv)
+void	show_decks(t_card *deck_a, t_card *deck_b)
 {
-	int	i;
-
-	i = 0;
-	printf("argc=[%d]    ", argc);
-	while (i < argc)
-	{
-		printf("i=[%d] ", i);
-		printf("argv[i]=[%s]   ", argv[i]);
-		i++;
-	}
-	printf(".\n");
+	printf("--------deck_a:\n");
+	show_deck(deck_a);
+	printf("--------deck_b:\n");
+	show_deck(deck_b);
 }
 
 int	main(int argc, char **argv)
 {
-	t_card	*first_card;
+	t_card	*deck_a;
+	t_card	*deck_b;
 
 	if (argc <= 1)
 		return (-1);
-//	show_args(argc, argv);
-	first_card = create_deck(argc, argv);
-	if (!first_card)
+	deck_a = create_deck(argc, argv);
+	if (!deck_a)
 		return (-1);
-	show_deck(first_card);
-	first_card = rotate(first_card);
+	deck_b = NULL;
+	show_decks(deck_a, deck_b);
+
+	deck_a = reverse_rotate(deck_a);
+	printf("\nrra\n");
+	show_deck(deck_a);
+
+	deck_a = rotate(deck_a);
 	printf("\nra\n");
-	show_deck(first_card);
-	free_deck(first_card);
+	show_deck(deck_a);
+
+	deck_a = swap(deck_a);
+	printf("\nsa\n");
+	show_deck(deck_a);
+
+	free_deck(deck_a);
+	free_deck(deck_b);
 	return (0);
 }

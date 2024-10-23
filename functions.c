@@ -6,30 +6,31 @@
 /*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 15:30:58 by vgodoy            #+#    #+#             */
-/*   Updated: 2024/10/23 11:23:03 by vgodoy           ###   ########.fr       */
+/*   Updated: 2024/10/23 15:07:28 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_card	*swap(t_card *deck)
+t_card	*swap2(t_card *first, t_card *second)
 {
-	t_card	*first;
+	first->prev = second;
+	second->next = first;
+	second->prev = NULL;
+	first->next = NULL;
+	return (second);
+}
+
+t_card	*swap(t_card *first)
+{
 	t_card	*second;
 	t_card	*third;
 
-	if (deck == NULL || deck->next == NULL)
-		return (deck);
-	first = deck;
-	second = deck->next;
+	if (first == NULL || first->next == NULL)
+		return (first);
+	second = first->next;
 	if (second->next == NULL)
-	{
-		first->prev = second;
-		second->next = first;
-		second->prev = NULL;
-		first->next = NULL;
-		return (second);
-	}
+		return (swap2(first, second));
 	third = second->next;
 	second->prev = NULL;
 	second->next = first;
@@ -39,24 +40,16 @@ t_card	*swap(t_card *deck)
 	return (second);
 }
 
-t_card	*rotate(t_card *deck)
+t_card	*rotate(t_card *first)
 {
-	t_card	*first;
 	t_card	*second;
 	t_card	*last;
 
-	if (deck == NULL || deck->next == NULL)
-		return (deck);
-	first = deck;
-	second = deck->next;
+	if (first == NULL || first->next == NULL)
+		return (first);
+	second = first->next;
 	if (second->next == NULL)
-	{
-		first->prev = second;
-		second->next = first;
-		second->prev = NULL;
-		first->next = NULL;
-		return (second);
-	}
+		return (swap2(first, second));
 	last = second->next;
 	while (last->next != NULL)
 		last = last->next;
@@ -65,4 +58,22 @@ t_card	*rotate(t_card *deck)
 	first->prev = last;
 	first->next = NULL;
 	return (second);
+}
+
+t_card	*reverse_rotate(t_card *first)
+{
+	t_card	*last;
+	t_card	*before_last;
+
+	if (first == NULL || first->next == NULL)
+		return (first);
+	last = first->next;
+	while (last->next != NULL)
+		last = last->next;
+	before_last = last->prev;
+	last->prev = NULL;
+	last->next = first;
+	first->prev = last;
+	before_last->next = NULL;
+	return (last);
 }

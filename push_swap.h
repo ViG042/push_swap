@@ -6,7 +6,7 @@
 /*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:34:37 by vgodoy            #+#    #+#             */
-/*   Updated: 2024/10/23 11:39:59 by vgodoy           ###   ########.fr       */
+/*   Updated: 2024/10/23 14:45:52 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,6 @@ void	free_deck(t_card *card);
 t_card	*create_deck(int argc, char **argv);
 t_card	*swap(t_card *deck);
 t_card	*rotate(t_card *deck);
-void	putnbr(long nb);
+t_card	*reverse_rotate(t_card *deck);
 
 #endif

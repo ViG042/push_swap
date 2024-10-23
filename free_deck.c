@@ -6,7 +6,7 @@
 /*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 09:24:17 by vgodoy            #+#    #+#             */
-/*   Updated: 2024/10/23 09:24:36 by vgodoy           ###   ########.fr       */
+/*   Updated: 2024/10/23 16:09:29 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,11 @@ void	free_deck(t_card *actual_card)
 		next_card = next_card->next;
 	}
 	free(actual_card);
+}
+
+void	free_decks(t_decks	*decks)
+{
+	free_deck(decks->deck_a);
+	free_deck(decks->deck_b);
+	free(decks);
 }

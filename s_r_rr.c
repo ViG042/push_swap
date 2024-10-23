@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   functions.c                                        :+:      :+:    :+:   */
+/*   s_r_rr.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 15:30:58 by vgodoy            #+#    #+#             */
-/*   Updated: 2024/10/23 15:07:28 by vgodoy           ###   ########.fr       */
+/*   Updated: 2024/10/23 20:05:44 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,12 +68,15 @@ t_card	*reverse_rotate(t_card *first)
 	if (first == NULL || first->next == NULL)
 		return (first);
 	last = first->next;
+	if (last->next == NULL)
+		return (swap2(first, last));
 	while (last->next != NULL)
 		last = last->next;
 	before_last = last->prev;
-	last->prev = NULL;
+
 	last->next = first;
 	first->prev = last;
 	before_last->next = NULL;
+	last->prev = NULL;
 	return (last);
 }

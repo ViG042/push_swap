@@ -6,7 +6,7 @@
 /*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:58:34 by vgodoy            #+#    #+#             */
-/*   Updated: 2024/10/23 14:36:24 by vgodoy           ###   ########.fr       */
+/*   Updated: 2024/10/23 16:47:13 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ t_card	*create_card(t_card *previous_card, char *str)
 	return (new_card);
 }
 
-t_card	*create_deck(int argc, char **argv)
+t_card	*create_deck_a(int argc, char **argv)
 {
 	int		i;
 	t_card	*first_card;
@@ -83,4 +83,24 @@ t_card	*create_deck(int argc, char **argv)
 		i++;
 	}
 	return (first_card);
+}
+
+t_decks	*create_decks(int argc, char **argv)
+{
+	t_decks	*decks;
+	t_card	*a;
+	t_card	*b;
+
+	if (argc <= 1)
+		return (NULL);
+	decks = malloc(sizeof(t_decks));
+	if (!decks)
+		return (NULL);
+	a = create_deck_a(argc, argv);
+	if (!a)
+		return (free(decks), NULL);
+	b = NULL;
+	decks->deck_a = a;
+	decks->deck_b = b;
+	return (decks);
 }

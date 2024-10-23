@@ -6,55 +6,90 @@
 /*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 15:23:56 by vgodoy            #+#    #+#             */
-/*   Updated: 2024/10/23 15:35:53 by vgodoy           ###   ########.fr       */
+/*   Updated: 2024/10/23 20:08:38 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	show_deck(t_card *card)
-{
-	while (card != NULL)
-	{
-		printf("%d\n",card->nbr);
-		card = card->next;
-	}
-}
-
-void	show_decks(t_card *deck_a, t_card *deck_b)
-{
-	printf("--------deck_a:\n");
-	show_deck(deck_a);
-	printf("--------deck_b:\n");
-	show_deck(deck_b);
-}
-
 int	main(int argc, char **argv)
 {
-	t_card	*deck_a;
-	t_card	*deck_b;
+	t_decks	*decks;
+	int	i;
 
-	if (argc <= 1)
+	decks = create_decks(argc, argv);
+	if (!decks)
 		return (-1);
-	deck_a = create_deck(argc, argv);
-	if (!deck_a)
-		return (-1);
-	deck_b = NULL;
-	show_decks(deck_a, deck_b);
 
-	deck_a = reverse_rotate(deck_a);
-	printf("\nrra\n");
-	show_deck(deck_a);
+	show_decks(decks);
+/*	
+	for (i=0; i<7 ; i++)
+	{
+	pb(decks); printf("pb\n"); show_decks(decks);
+	}
 
-	deck_a = rotate(deck_a);
-	printf("\nra\n");
-	show_deck(deck_a);
+	sa(decks); printf("sa\n"); show_decks(decks);
+	sb(decks); printf("sb\n"); show_decks(decks);
+	ss(decks); printf("ss\n"); show_decks(decks);
 
-	deck_a = swap(deck_a);
-	printf("\nsa\n");
-	show_deck(deck_a);
+	ra(decks); printf("ra\n"); show_decks(decks);
+	rb(decks); printf("rb\n"); show_decks(decks);
+	rr(decks); printf("rr\n"); show_decks(decks);
 
-	free_deck(deck_a);
-	free_deck(deck_b);
+	rra(decks); printf("rra\n"); show_decks(decks);
+	rrb(decks); printf("rrb\n"); show_decks(decks);
+	rrr(decks); printf("rrr\n"); show_decks(decks);
+
+	for (i=0; i<3 ; i++)
+	{
+	pa(decks); printf("pa\n"); show_decks(decks);
+	}
+
+	sa(decks); printf("sa\n"); show_decks(decks);
+	sb(decks); printf("sb\n"); show_decks(decks);
+	ss(decks); printf("ss\n"); show_decks(decks);
+
+	ra(decks); printf("ra\n"); show_decks(decks);
+	rb(decks); printf("rb\n"); show_decks(decks);
+	rr(decks); printf("rr\n"); show_decks(decks);
+
+	rra(decks); printf("rra\n"); show_decks(decks);
+	rrb(decks); printf("rrb\n"); show_decks(decks);
+	rrr(decks); printf("rrr\n"); show_decks(decks);
+
+	for (i=0; i<4 ; i++)
+	{
+	pa(decks); printf("pa\n"); show_decks(decks);
+	}
+
+	sa(decks); printf("sa\n"); show_decks(decks);
+	sb(decks); printf("sb\n"); show_decks(decks);
+	ss(decks); printf("ss\n"); show_decks(decks);
+
+	ra(decks); printf("ra\n"); show_decks(decks);
+	rb(decks); printf("rb\n"); show_decks(decks);
+	rr(decks); printf("rr\n"); show_decks(decks);
+
+	rra(decks); printf("rra\n"); show_decks(decks);
+	rrb(decks); printf("rrb\n"); show_decks(decks);
+	rrr(decks); printf("rrr\n"); show_decks(decks);
+
+	for (i=0; i<3 ; i++)
+	{
+	pa(decks); printf("pa\n"); show_decks(decks);
+	}
+
+	rrr(decks); printf("rrr\n"); show_decks(decks);
+	rrr(decks); printf("rrr\n"); show_decks(decks);
+*/
+	for (i=0; i<3 ; i++)
+	{
+		pb(decks); printf("pb\n"); show_decks(decks);
+	}
+	rrb(decks); printf("rrr\n"); show_decks(decks);
+	rrb(decks); printf("rrr\n"); show_decks(decks);
+	rrb(decks); printf("rrr\n"); show_decks(decks);
+
+	free_decks(decks);
 	return (0);
 }

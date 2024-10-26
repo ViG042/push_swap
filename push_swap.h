@@ -6,7 +6,7 @@
 /*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:34:37 by vgodoy            #+#    #+#             */
-/*   Updated: 2024/10/23 19:21:35 by vgodoy           ###   ########.fr       */
+/*   Updated: 2024/10/26 16:44:53 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,7 @@ void 	pa(t_decks *decks);
 void	ss(t_decks *decks);
 void	rr(t_decks *decks);
 void	rrr(t_decks *decks);
+
+t_card	*sort3(t_card *a);
 
 #endif

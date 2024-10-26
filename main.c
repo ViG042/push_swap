@@ -6,7 +6,7 @@
 /*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 15:23:56 by vgodoy            #+#    #+#             */
-/*   Updated: 2024/10/23 20:08:38 by vgodoy           ###   ########.fr       */
+/*   Updated: 2024/10/26 12:22:36 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(int argc, char **argv)
 		return (-1);
 
 	show_decks(decks);
-/*	
+	
 	for (i=0; i<7 ; i++)
 	{
 	pb(decks); printf("pb\n"); show_decks(decks);
@@ -81,14 +81,14 @@ int	main(int argc, char **argv)
 
 	rrr(decks); printf("rrr\n"); show_decks(decks);
 	rrr(decks); printf("rrr\n"); show_decks(decks);
-*/
+
 	for (i=0; i<3 ; i++)
 	{
 		pb(decks); printf("pb\n"); show_decks(decks);
 	}
-	rrb(decks); printf("rrr\n"); show_decks(decks);
-	rrb(decks); printf("rrr\n"); show_decks(decks);
-	rrb(decks); printf("rrr\n"); show_decks(decks);
+	rrr(decks); printf("rrr\n"); show_decks(decks);
+	rrr(decks); printf("rrr\n"); show_decks(decks);
+	rrr(decks); printf("rrr\n"); show_decks(decks);
 
 	free_decks(decks);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 15:23:56 by vgodoy            #+#    #+#             */
-/*   Updated: 2024/10/26 18:36:30 by vgodoy           ###   ########.fr       */
+/*   Updated: 2024/10/27 16:59:14 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,20 @@ int	main(int argc, char **argv)
 	decks = create_decks(argc, argv);
 	if (!decks)
 		return (-1);
+	deckslen(decks); show_decks(decks);
 
-	show_decks(decks);
+	pb(decks); printf("pb\n"); deckslen(decks); show_decks(decks);
+	pb(decks); printf("pb\n"); deckslen(decks); show_decks(decks);
+	
+	target_node_a(decks); show_decks(decks);
+
+	push_cost_a_to_b(decks); show_decks(decks);
+
+	free_decks(decks);
+	return (0);
+}
+
+
 /*	
 	decks->deck_a = sort3(decks->deck_a);
 	
@@ -29,7 +41,10 @@ int	main(int argc, char **argv)
 	free_decks(decks);
 	return (0);
 }
-*/	
+*/
+
+
+/*
 	int	i;
 	for (i=0; i<7 ; i++)
 	{
@@ -101,4 +116,4 @@ int	main(int argc, char **argv)
 	free_decks(decks);
 	return (0);
 }
-
+*/

@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_cost.c                                        :+:      :+:    :+:   */
+/*   old_push_cost.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 16:09:18 by vgodoy            #+#    #+#             */
-/*   Updated: 2024/10/27 17:17:28 by vgodoy           ###   ########.fr       */
+/*   Updated: 2024/11/06 14:51:29 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+/*
 #include "push_swap.h"
 
 int	add_b_cost(int push_cost, int b_index, int b_decklen)
 {
-	if (b_index < b_decklen / 2)
+	if (b_index <= b_decklen / 2)
 		push_cost = push_cost + b_index;
 	else
-		push_cost = push_cost + (b_decklen - b_index + 1);
+		push_cost = push_cost + (b_decklen - b_index);
 	return (push_cost);
 }
 
@@ -33,18 +33,18 @@ int	calculate_push_cost_method_a(t_card *a, t_card *b)
 														printf("   [%d] cost = [%d]\n", a->nbr, push_cost);
 		b_index = b->index - push_cost;
 		if (b_index < 0)
-			b_index = b_index + b->decklen;
+			b_index = b_index + b->decklen - 1;
 														printf("        b_index = [%d]\n", b_index);
 		push_cost = add_b_cost(push_cost, b_index, b->decklen);
 	}
 	else
 	{
 														printf("index > medianne\n");
-		push_cost = a->decklen - a->index + 1;
+		push_cost = a->decklen - a->index;
 														printf("   [%d] cost = [%d]\n", a->nbr, push_cost);
 		b_index = b->index + push_cost;
 		if (b_index >= b->decklen)
-			b_index = b_index - b->decklen;
+			b_index = b_index - b->decklen - 1;
 														printf("        b_index = [%d]\n", b_index);
 		push_cost = add_b_cost(push_cost, b_index, b->decklen);
 	}
@@ -87,3 +87,4 @@ void	push_cost_a_to_b(t_decks *decks)
 		a = a->next;
 	}
 }
+*/

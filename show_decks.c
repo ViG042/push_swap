@@ -6,7 +6,7 @@
 /*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 16:14:04 by vgodoy            #+#    #+#             */
-/*   Updated: 2024/10/27 17:02:43 by vgodoy           ###   ########.fr       */
+/*   Updated: 2024/11/06 17:14:07 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	show_decks(t_decks *decks)
 		if (b != NULL)
 		{
 			if (a == NULL)
-				printf("                             ");
+				printf("                                      ");
 			printf("%d.", b->index);
 			printf("[%d]", b->nbr);
 			if (b->prev != NULL)
@@ -57,17 +57,25 @@ void	show_decks(t_decks *decks)
 				printf("|   %d->", b->next->nbr);
 			else
 				printf("|NulL->");
+			if (b->tgt)
+				printf("  tgt=[%d]", b->tgt->nbr);
+			else
+				printf("          ");
+			if (b->cost)
+				printf(" cost=[%d]", b->cost);
+			else
+				printf("          ");
 			b = b->next;
 		}
 		if (a != NULL)
 			a = a->next;
 		printf("\n");
 	}
-	if (decks->deck_a)
-		printf("total a = [%d]                                    ", decks->deck_a->decklen);
-	else
-		printf("                                                 ");
-	if (decks->deck_b)
-		printf("total b len = [%d]", decks->deck_b->decklen);
+//	if (decks->deck_a)
+//		printf("total a = [%d]                                    ", decks->deck_a->decklen);
+//	else
+//		printf("                                                 ");
+//	if (decks->deck_b)
+//		printf("total b len = [%d]", decks->deck_b->decklen);
 	printf("\n-----------\n\n");
 }

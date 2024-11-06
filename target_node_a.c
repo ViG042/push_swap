@@ -1,35 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort3.c                                            :+:      :+:    :+:   */
+/*   target_node.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/26 14:27:18 by vgodoy            #+#    #+#             */
-/*   Updated: 2024/11/06 16:35:08 by vgodoy           ###   ########.fr       */
+/*   Created: 2024/10/27 15:06:39 by vgodoy            #+#    #+#             */
+/*   Updated: 2024/11/06 16:13:38 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-bool	sorted(t_card *a)
+t_card	*target_a(t_card *deck_b, int nbr)
 {
-	while (a->next != 0 && a->next->nbr > a->nbr)
-		a = a->next;
-	if (a->next == 0)
-		return (1);
-	else
-		return (0);
+	t_card	*tgt;
+	t_card	*b;
+
+	b = deck_b;
+	tgt = find_smaller(deck_b);
+	while (b)
+	{
+		if (b->nbr < nbr && tgt->nbr < b->nbr)
+			tgt = b;
+		b = b->next;
+	}
+	if (tgt->nbr > nbr)
+		tgt = find_bigger(deck_b);
+	return (tgt);
 }
 
-void	sort3a(t_decks *decks)
+void	target_node_a(t_decks	*decks)
 {
-	if (sorted(decks->deck_a))
-		return ;
-	if (find_bigger(decks->deck_a) == decks->deck_a)
-		ra(decks);
-	else if (find_bigger(decks->deck_a) == decks->deck_a->next)
-		rra(decks);
-	if (decks->deck_a->nbr > decks->deck_a->next->nbr)
-		sa(decks);
+	t_card	*a;
+
+	a = decks->deck_a;
+	while (a)
+	{
+		a->tgt = target_a(decks->deck_b, a->nbr);
+		a = a->next;
+	}
 }

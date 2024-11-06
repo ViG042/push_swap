@@ -6,7 +6,7 @@
 /*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:34:37 by vgodoy            #+#    #+#             */
-/*   Updated: 2024/10/27 16:56:35 by vgodoy           ###   ########.fr       */
+/*   Updated: 2024/11/06 17:45:44 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ typedef struct s_card
 	int				index;
 	int				decklen;
 	int				cost;
-	char			method;
 	struct s_card	*tgt;
 	struct s_card	*next;
 	struct s_card	*prev;
 }	t_card;
+//	char			method;
 
 typedef	struct	s_decks
 {
@@ -62,11 +62,20 @@ void	ss(t_decks *decks);
 void	rr(t_decks *decks);
 void	rrr(t_decks *decks);
 
-t_card	*sort3(t_card *a);
+void	sort3a(t_decks *decks);
+
 t_card	*find_bigger(t_card *a);
+t_card	*find_smaller(t_card *a);
 
 void	deckslen(t_decks *decks);
+
 void	target_node_a(t_decks	*decks);
 void	push_cost_a_to_b(t_decks *decks);
+void	push_a_to_b(t_decks *decks);
 
+void	target_node_b(t_decks	*decks);
+void	push_cost_b_to_a(t_decks *decks);
+void	push_b_to_a(t_decks *decks);
+
+void	move_a2(t_decks *decks, t_card *better_choice);
 #endif

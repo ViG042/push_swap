@@ -6,7 +6,7 @@
 /*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 15:23:56 by vgodoy            #+#    #+#             */
-/*   Updated: 2024/11/06 18:08:10 by vgodoy           ###   ########.fr       */
+/*   Updated: 2024/11/06 18:15:44 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,9 @@ int	main(int argc, char **argv)
 		return (-1);
 	show_decks(decks);
 	everything_gets_in_b(decks);
-	show_decks(decks);
+//	show_decks(decks);
 	everythings_gets_back_in_a(decks);
-	show_decks(decks);
+//	show_decks(decks);
 	final_move(decks, find_smaller(decks->deck_a));
 	show_decks(decks);
 	free_decks(decks);

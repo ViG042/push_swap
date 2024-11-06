@@ -6,7 +6,7 @@
 /*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 15:38:52 by vgodoy            #+#    #+#             */
-/*   Updated: 2024/10/26 12:40:40 by vgodoy           ###   ########.fr       */
+/*   Updated: 2024/11/06 18:12:19 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	pb(t_decks *decks)
 	if (b1 != NULL)
 		b1->prev = a1;
 	a2->prev = NULL;
+	write(1,"pb\n",3);
 }
 
 void	pa(t_decks *decks)
@@ -66,4 +67,5 @@ void	pa(t_decks *decks)
 	if (a1 != NULL)
 		a1->prev = b1;
 	b2->prev = NULL;
+	write(1,"pa\n",3);
 }

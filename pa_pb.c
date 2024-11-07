@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push.c                                             :+:      :+:    :+:   */
+/*   pa_pb.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 15:38:52 by vgodoy            #+#    #+#             */
-/*   Updated: 2024/11/06 18:12:19 by vgodoy           ###   ########.fr       */
+/*   Updated: 2024/11/07 10:49:58 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	pb(t_decks *decks)
 
 	if (decks->deck_a == NULL)
 		return ;
+	write(1,"pb\n",3);
 	a1 = decks->deck_a;
 	b1 = decks->deck_b;
 	if (a1->next == NULL)
@@ -38,7 +39,6 @@ void	pb(t_decks *decks)
 	if (b1 != NULL)
 		b1->prev = a1;
 	a2->prev = NULL;
-	write(1,"pb\n",3);
 }
 
 void	pa(t_decks *decks)
@@ -49,6 +49,7 @@ void	pa(t_decks *decks)
 
 	if (decks->deck_b == NULL)
 		return ;
+	write(1,"pa\n",3);
 	b1 = decks->deck_b;
 	a1 = decks->deck_a;
 	if (b1->next == NULL)
@@ -67,5 +68,4 @@ void	pa(t_decks *decks)
 	if (a1 != NULL)
 		a1->prev = b1;
 	b2->prev = NULL;
-	write(1,"pa\n",3);
 }

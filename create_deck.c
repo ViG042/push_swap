@@ -6,38 +6,11 @@
 /*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:58:34 by vgodoy            #+#    #+#             */
-/*   Updated: 2024/10/23 16:47:13 by vgodoy           ###   ########.fr       */
+/*   Updated: 2024/11/09 17:10:58 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-long long	ft_atol(char *str)
-{
-	long long	nbr;
-	int			i;
-	int			minus;
-
-	nbr = 0;
-	i = 0;
-	minus = 1;
-	if (str[i] == '-')
-	{
-		minus = -1;
-		i++;
-	}
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		nbr = nbr * 10 + (str[i] - '0');
-		i++;
-	}
-	nbr = nbr * minus;
-	if ((str[i] != '\0' || nbr < INT_MIN || nbr > INT_MAX)
-		|| (nbr == 0 && str[0] == '-'))
-		return (2147483648);
-	else
-		return (nbr);
-}
 
 t_card	*create_card(t_card *previous_card, char *str)
 {
@@ -82,6 +55,8 @@ t_card	*create_deck_a(int argc, char **argv)
 		previous_card = next_card;
 		i++;
 	}
+	if (!test_repetitions(first_card))
+			return (free_deck(previous_card), NULL);
 	return (first_card);
 }
 
@@ -95,10 +70,17 @@ t_decks	*create_decks(int argc, char **argv)
 		return (NULL);
 	decks = malloc(sizeof(t_decks));
 	if (!decks)
+	{
+		write(2, "Error\n", 6);
 		return (NULL);
+	}
 	a = create_deck_a(argc, argv);
 	if (!a)
-		return (free(decks), NULL);
+	{
+		write(2, "Error\n", 6);
+		free(decks);
+		return (NULL);
+	}
 	b = NULL;
 	decks->deck_a = a;
 	decks->deck_b = b;

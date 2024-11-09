@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_a_to_b.c                                      :+:      :+:    :+:   */
+/*   opti_move.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/06 15:06:53 by vgodoy            #+#    #+#             */
-/*   Updated: 2024/11/09 17:21:52 by vgodoy           ###   ########.fr       */
+/*   Created: 2024/11/09 17:17:59 by vgodoy            #+#    #+#             */
+/*   Updated: 2024/11/09 17:47:54 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
+/*
 void	move_b(t_decks *decks, t_card *better_choice)
 {
 	int	i;
@@ -59,34 +59,49 @@ void	move_a(t_decks *decks, t_card *better_choice)
 		}
 	}
 }
-
-t_card	*choose_wisely(t_decks *decks)
+*/
+void	go_up(t_decks *decks, t_card *better_choice)
 {
-	t_card	*better_choice;
-	t_card	*a;
+	t_card	*target;
+	int		double_move;
 
-	a = decks->deck_a;
-	better_choice = a;
-	while (a)
+	target = better_choice->tgt;
+	if (better_choice->index < target->index)
+		double_move = better_choice->index;
+	else
+		double_move = target->index;
+	while (double_move > 0)
 	{
-		if (a->cost < better_choice->cost)
-			better_choice = a;
-		a = a->next;
+		rr(decks);
+		double_move--;
 	}
-	return (better_choice);
+	deckslen(decks);
+//---------------------------------------simple_move_up
 }
 
-void	push_a_to_b(t_decks *decks)
+bool	same_side_of_their_median(t_decks *decks, t_card *better_choice)
 {
-	t_card *better_choice;
+	t_card	*target;
 
-	better_choice = choose_wisely(decks);
-	if (same_side_of_their_median(decks, better_choice))
-		opti_move(decks, better_choice);
-	else
-	{
-		move_a(decks, better_choice);
-		move_b(decks, better_choice);
-	}
-	pb(decks);
+	target = better_choice->tgt;
+	if (better_choice->index <= better_choice->decklen / 2
+			&& target->index <= target->decklen / 2)
+		return (1);
+	if (better_choice->index > better_choice->decklen / 2
+			&& target->index > target->decklen / 2)
+		return (1);
+	return (0);
+}
+
+void	opti_move(t_decks *decks, t_card *better_choice)
+{
+	t_card	*target;
+
+	target = better_choice->tgt;
+	if (better_choice->index <= better_choice->decklen / 2
+			&& target->index <= target->decklen / 2)
+		go_up(decks, better_choice);
+	if (better_choice->index > better_choice->decklen / 2
+			&& target->index > target->decklen / 2)
+		go_down(decks, better_choice);
 }

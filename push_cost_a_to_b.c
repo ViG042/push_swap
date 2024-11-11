@@ -6,7 +6,7 @@
 /*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 14:30:25 by vgodoy            #+#    #+#             */
-/*   Updated: 2024/11/09 17:48:39 by vgodoy           ###   ########.fr       */
+/*   Updated: 2024/11/11 18:05:18 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,19 @@ void	push_cost_a_to_b(t_decks *decks)
 {
 	t_card	*a;
 	t_card	*b;
+	int		opti_cost;
 
 	a = decks->deck_a;
 	b = decks->deck_b;
-
 	while (a)
 	{
 		a->cost = calculate_cost(a, a->tgt);
+		if (same_side_of_their_median(a))
+		{
+			opti_cost = opti_push_cost(a);
+			if (opti_cost < a->cost)
+				a->cost = opti_cost;
+		}
 		a = a->next;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:58:34 by vgodoy            #+#    #+#             */
-/*   Updated: 2024/11/09 17:10:58 by vgodoy           ###   ########.fr       */
+/*   Updated: 2024/11/11 17:46:19 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,29 +60,32 @@ t_card	*create_deck_a(int argc, char **argv)
 	return (first_card);
 }
 
+t_decks	*assign_decks(t_decks *decks, t_card *a)
+{
+	t_card	*b;
+
+	b = NULL;
+	decks->deck_a = a;
+	decks->deck_b = b;
+	deckslen(decks);
+	return (decks);
+}
+
 t_decks	*create_decks(int argc, char **argv)
 {
 	t_decks	*decks;
 	t_card	*a;
-	t_card	*b;
 
 	if (argc <= 1)
 		return (NULL);
 	decks = malloc(sizeof(t_decks));
 	if (!decks)
-	{
-		write(2, "Error\n", 6);
-		return (NULL);
-	}
+		return (write(2, "Error\n", 6), NULL);
 	a = create_deck_a(argc, argv);
 	if (!a)
-	{
-		write(2, "Error\n", 6);
-		free(decks);
-		return (NULL);
-	}
-	b = NULL;
-	decks->deck_a = a;
-	decks->deck_b = b;
+		return(free(decks), write(2, "Error\n", 6), NULL);
+	assign_decks(decks, a);
+	if (how_long(a) > 600)
+		return(free_decks(decks), write(2, "Error\n", 6), NULL);
 	return (decks);
 }

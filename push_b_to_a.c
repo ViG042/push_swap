@@ -6,7 +6,7 @@
 /*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 16:51:08 by vgodoy            #+#    #+#             */
-/*   Updated: 2024/11/06 17:32:19 by vgodoy           ###   ########.fr       */
+/*   Updated: 2024/11/11 16:03:36 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	move_a2(t_decks *decks, t_card *better_choice)
 		i = better_choice->tgt->index;
 		while (i > 0)
 		{
-			ra(decks);
+			ra(decks, 1);
 			i--;
 		}
 	}
@@ -30,7 +30,7 @@ void	move_a2(t_decks *decks, t_card *better_choice)
 		i = better_choice->tgt->decklen - better_choice->tgt->index;
 		while (i > 0)
 		{
-			rra(decks);
+			rra(decks, 1);
 			i--;
 		}
 	}
@@ -45,7 +45,7 @@ void	move_b2(t_decks *decks, t_card *better_choice)
 		i = better_choice->index;
 		while (i > 0)
 		{
-			rb(decks);
+			rb(decks, 1);
 			i--;
 		}
 	}
@@ -54,7 +54,7 @@ void	move_b2(t_decks *decks, t_card *better_choice)
 		i = better_choice->decklen - better_choice->index;
 		while (i > 0)
 		{
-			rrb(decks);
+			rrb(decks, 1);
 			i--;
 		}
 	}
@@ -81,7 +81,14 @@ void	push_b_to_a(t_decks *decks)
 	t_card *better_choice;
 
 	better_choice = choose_wisely2(decks);
-	move_b2(decks, better_choice);
-	move_a2(decks, better_choice);
+	if (same_side_of_their_median(better_choice)
+			&& (opti_push_cost(better_choice)
+			< calculate_cost2(better_choice, better_choice->tgt)))
+		opti_move(decks, better_choice);
+	else
+	{
+		move_b2(decks, better_choice);
+		move_a2(decks, better_choice);
+	}
 	pa(decks);
 }

@@ -6,7 +6,7 @@
 /*   By: vgodoy <vgodoy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 17:02:26 by vgodoy            #+#    #+#             */
-/*   Updated: 2024/11/09 17:12:55 by vgodoy           ###   ########.fr       */
+/*   Updated: 2024/11/11 18:50:39 by vgodoy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ long long	ft_atol(char *str)
 		i++;
 	}
 	nbr = nbr * minus;
-	if ((str[i] != '\0' || nbr < INT_MIN || nbr > INT_MAX)
+	if ((str[0] == '\0' || str[i] != '\0'
+		|| nbr < INT_MIN || nbr > INT_MAX)
 		|| (nbr == 0 && str[0] == '-'))
 		return (2147483648);
 	else
